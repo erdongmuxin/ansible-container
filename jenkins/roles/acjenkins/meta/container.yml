@@ -1,0 +1,8 @@
+from: centos:7
+ports:
+- '8080'
+command:
+- java
+- -jar
+- jenkins.war
+- --httpPort=8080

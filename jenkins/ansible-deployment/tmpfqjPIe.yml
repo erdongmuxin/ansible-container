@@ -1,0 +1,65 @@
+  - name: Deploy jenkins
+    hosts: localhost
+    gather_facts: false
+    tasks:
+      - docker_service:
+            definition:
+                services: &id001
+                    acjenkins:
+                        image: jenkins-acjenkins:20190530040639
+                        command:
+                          - java
+                          - -jar
+                          - jenkins.war
+                          - --httpPort=8080
+                        ports:
+                          - 8080:8080
+                        volumes:
+                          - /home/sd/jenkins:/root/.jenkins
+                version: '2'
+            state: present
+            project_name: jenkins
+        tags:
+          - start
+      - docker_service:
+            definition:
+                services: *id001
+                version: '2'
+            state: present
+            project_name: jenkins
+            restarted: true
+        tags:
+          - restart
+      - docker_service:
+            definition:
+                services: *id001
+                version: '2'
+            state: present
+            project_name: jenkins
+            stopped: true
+        tags:
+          - stop
+      - docker_service:
+            definition:
+                services: *id001
+                version: '2'
+            state: absent
+            project_name: jenkins
+            remove_volumes: yes
+        tags:
+          - destroy
+      - docker_image:
+            state: absent
+            force: yes
+            name: jenkins-acjenkins:20190530040639
+        tags: destroy
+      - docker_image:
+            state: absent
+            force: yes
+            name: jenkins-acjenkins:latest
+        tags: destroy
+      - docker_image:
+            state: absent
+            force: yes
+            name: jenkins-conductor:latest
+        tags: destroy

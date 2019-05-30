@@ -1,0 +1,11 @@
+version: '2'
+settings:
+  conductor_base: centos:7
+services:
+  acjenkins:
+    roles:
+    - acjenkins
+    ports:
+    - 8080:8080
+    volumes:
+    - /home/sd/jenkins:/root/.jenkins

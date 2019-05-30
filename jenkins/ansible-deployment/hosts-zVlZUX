@@ -1,0 +1,1 @@
+acjenkins ansible_host="ordereddict([('from', 'centos:7'), ('ports', ['8080:8080']), ('command', ['java', '-jar', 'jenkins.war', '--httpPort=8080']), (u'volumes', ['/home/sd/jenkins:/root/.jenkins']), (u'roles', ['acjenkins']), (u'name', ['jenkins']), ('defaults', ordereddict([('playbook_debug', False)]))])" ansible_python_interpreter="/_usr/bin/python"

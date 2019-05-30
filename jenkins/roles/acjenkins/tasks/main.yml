@@ -1,0 +1,16 @@
+- shell: yum -y install java-1.8.0-openjdk-devel wget
+- shell: wget http://mirrors.jenkins.io/war-stable/latest/jenkins.war
+- name: Ensure / exists
+  file:
+    path: /
+    state: directory
+- copy:
+    src: localtime
+    dest: /etc
+- name: Ensure / exists
+  file:
+    path: /
+    state: directory
+- copy:
+    src: timezone
+    dest: /etc
